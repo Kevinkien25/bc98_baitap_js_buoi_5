@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BTVN-JS-05</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <header class="bg-white/90 backdrop-blur-md sticky top-0 z-40 shadow-[0_0_30px_0_rgba(0,0,0,0.07)]">
+    <div class="max-w-5xl mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <span class="w-11 h-11 rounded-full btn-gradient flex items-center justify-center text-white text-xl shadow-md">
+          <i class="fa-brands fa-js"></i>
+        </span>
+        <span class="text-2xl font-extrabold text-[#070120] tracking-tight">
+          BTVN<span class="text-[#f55f8d]">-JS-05</span>
+        </span>
+      </div>
+
+      <nav class="flex flex-wrap items-center gap-2">
+        <button id="btn-bai1" onclick="openTab('bai1')" class="tab-btn nav-tab btn-gradient px-5 py-2.5 rounded-full font-medium text-sm uppercase tracking-wide shadow-sm">
+          <span>Bài 1</span>
+        </button>
+        <button id="btn-bai2" onclick="openTab('bai2')" class="tab-btn nav-tab px-5 py-2.5 rounded-full font-medium text-sm uppercase tracking-wide">
+          <span>Bài 2</span>
+        </button>
+        <button id="btn-bai3" onclick="openTab('bai3')" class="tab-btn nav-tab px-5 py-2.5 rounded-full font-medium text-sm uppercase tracking-wide">
+          <span>Bài 3</span>
+        </button>
+        <button id="btn-bai4" onclick="openTab('bai4')" class="tab-btn nav-tab px-5 py-2.5 rounded-full font-medium text-sm uppercase tracking-wide">
+          <span>Bài 4</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 py-10 flex-1 w-full">
+    <div class="bg-white rounded-2xl shadow-[0_0_60px_0_rgba(0,0,0,0.1)] border border-pink-100/60 overflow-hidden">
+
+      <div id="bai1" class="tab-pane p-6 sm:p-10">
+        <div class="mb-6">
+          <p class="text-[#f55f8d] font-semibold text-lg mb-1">Bài Tập Nộp #1</p>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-[#262626]">
+            Quản Lý Tuyển Sinh
+          </h2>
+        </div>
+
+        <div class="img-box mb-6 border border-slate-200 shadow-sm">
+          <img src="./images/bai1.png" alt="Bài 1: Quản lý tuyển sinh" class="w-full block">
+        </div>
+
+        <ul class="mb-7 space-y-2.5 bg-[#f55f8d]/[0.04] rounded-xl p-4 border border-[#f55f8d]/15 text-sm">
+          <li class="flex items-start gap-3">
+            <i class="fa-solid fa-check icon-badge mt-0.5"></i>
+            <span><strong class="text-[#262626]">Đầu vào:</strong> Điểm chuẩn hội đồng, điểm 3 môn thi, khu vực ưu tiên (A, B, C, X), đối tượng ưu tiên (1, 2, 3, 0)</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fa-solid fa-check icon-badge mt-0.5"></i>
+            <span><strong class="text-[#262626]">Xử lý:</strong> Tổng điểm = Điểm môn 1 + Điểm môn 2 + Điểm môn 3 + Điểm khu vực + Điểm đối tượng. Trúng tuyển nếu Tổng điểm &ge; Điểm chuẩn và không có môn nào &le; 0</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fa-solid fa-check icon-badge mt-0.5"></i>
+            <span><strong class="text-[#262626]">Đầu ra:</strong> Kết quả Đậu / Rớt và Tổng điểm đạt được</span>
+          </li>
+        </ul>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+          <div>
+            <label class="block text-sm font-medium text-[#262626] mb-1.5">Điểm chuẩn:</label>
+            <input type="number" step="any" id="diemChuan" placeholder="Nhập điểm chuẩn" class="form-input w-full px-4 py-3 rounded-xl bg-white text-[#262626]">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-[#262626] mb-1.5">Khu vực ưu tiên:</label>
+            <select id="khuVuc" class="form-input w-full px-4 py-3 rounded-xl bg-white text-[#262626]">
+              <option value="X">Chọn khu vực</option>
+              <option value="A">Khu vực A (+2)</option>
+              <option value="B">Khu vực B (+1)</option>
+              <option value="C">Khu vực C (+0.5)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-[#262626] mb-1.5">Đối tượng ưu tiên:</label>
+            <select id="doiTuong" class="form-input w-full px-4 py-3 rounded-xl bg-white text-[#262626]">
+              <option value="0">Chọn đối tượng</option>
+              <option value="1">Đối tượng 1 (+2.5)</option>
+              <option value="2">Đối tượng 2 (+1.5)</option>
+              <option value="3">Đối tượng 3 (+1)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-[#262626] mb-1.5">Điểm môn thứ 1:</label>
+            <input type="number" step="any" id="diemMon1" placeholder="Điểm môn thứ 1" class="form-input w-full px-4 py-3 rounded-xl bg-white text-[#262626]">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-[#262626] mb-1.5">Điểm môn thứ 2:</label>
+            <input type="number" step="any" id="diemMon2" placeholder="Điểm môn thứ 2" class="form-input w-full px-4 py-3 rounded-xl bg-white text-[#262626]">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-[#262626] mb-1.5">Điểm môn thứ 3:</label>
+            <input type="number" step="any" id="diemMon3" placeholder="Điểm môn thứ 3" class="form-input w-full px-4 py-3 rounded-xl bg-white text-[#262626]">
+          </div>
+        </div>
+
+        <button id="btnKetQuaTuyenSinh" class="btn-gradient w-full py-3.5 px-6 font-semibold text-sm uppercase tracking-wider flex items-center justify-center gap-2">
+          <span>Xem Kết Quả</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+
+        <div class="mt-6">
+          <div id="pKetQuaBai1" class="result-box min-h-[54px] rounded-xl p-4 flex items-center text-[#262626] text-base">
+            <span>Kết quả sẽ hiển thị ở đây...</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="bai2" class="tab-pane hidden p-6 sm:p-10">
+        <div class="mb-6">
+          <p class="text-[#f55f8d] font-semibold text-lg mb-1">Bài Tập Nộp #2</p>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-[#262626]">
+            Tính Tiền Điện
+          </h2>
+        </div>
+
+        <div class="img-box mb-6 border border-slate-200 shadow-sm">
+          <img src="./images/bai2.png" alt="Bài 2: Tính tiền điện" class="w-full block">
+        </div>
+
+        <ul class="mb-7 space-y-2.5 bg-[#f55f8d]/[0.04] rounded-xl p-4 border border-[#f55f8d]/15 text-sm">
+          <li class="flex items-start gap-3">
+            <i class="fa-solid fa-check icon-badge mt-0.5"></i>
+            <span><strong class="text-[#262626]">Đầu vào:</strong> Họ tên người tiêu thụ điện, số Kw tiêu thụ</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fa-solid fa-check icon-badge mt-0.5"></i>
+            <span><strong class="text-[#262626]">Xử lý:</strong> Tính lũy tiến theo 5 bậc (50kw đầu: 500đ/kw, 50kw kế: 650đ/kw, 100kw kế: 850đ/kw, 150kw kế: 1100đ/kw, còn lại: 1300đ/kw)</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fa-solid fa-check icon-badge mt-0.5"></i>
+            <span><strong class="text-[#262626]">Đầu ra:</strong> Họ tên và Tổng tiền điện phải trả</span>
+          </li>
+        </ul>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+          <div>
+            <label class="block text-sm font-medium text-[#262626] mb-1.5">Họ tên:</label>
+            <input type="text" id="hoTenDien" placeholder="Nhập họ tên" class="form-input w-full px-4 py-3 rounded-xl bg-white text-[#262626]">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-[#262626] mb-1.5">Số Kw tiêu thụ:</label>
+            <input type="number" step="any" id="soKw" placeholder="Nhập số kw" class="form-input w-full px-4 py-3 rounded-xl bg-white text-[#262626]">
+          </div>
+        </div>
+
+        <button id="btnTinhTienDien" class="btn-gradient w-full py-3.5 px-6 font-semibold text-sm uppercase tracking-wider flex items-center justify-center gap-2">
+          <span>Tính Tiền Điện</span>
+          <i class="fa-solid fa-bolt"></i>
+        </button>
+
+        <div class="mt-6">
+          <div id="pKetQuaBai2" class="result-box min-h-[54px] rounded-xl p-4 flex items-center text-[#262626] text-base">
+            <span>Kết quả sẽ hiển thị ở đây...</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="bai3" class="tab-pane hidden p-6 sm:p-10">
+        <div class="mb-6">
+          <p class="text-[#f55f8d] font-semibold text-lg mb-1">Bài Tập Nộp #3</p>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-[#262626]">
+            Tính Thuế Thu Nhập Cá Nhân
+          </h2>
+        </div>
+
+        <div class="img-box mb-6 border border-slate-200 shadow-sm">
+          <img src="./images/bai3.png" alt="Bài 3: Tính thuế thu nhập cá nhân" class="w-full block">
+        </div>
+
+        <ul class="mb-7 space-y-2.5 bg-[#f55f8d]/[0.04] rounded-xl p-4 border border-[#f55f8d]/15 text-sm">
+          <li class="flex items-start gap-3">
+            <i class="fa-solid fa-check icon-badge mt-0.5"></i>
+            <span><strong class="text-[#262626]">Đầu vào:</strong> Họ tên, tổng thu nhập năm (VNĐ), số người phụ thuộc</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fa-solid fa-check icon-badge mt-0.5"></i>
+            <span><strong class="text-[#262626]">Xử lý:</strong> Thu nhập chịu thuế = Tổng thu nhập năm - 4.000.000 - Số người phụ thuộc * 1.600.000; Nhân với thuế suất tương ứng từ 5% đến 35%</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fa-solid fa-check icon-badge mt-0.5"></i>
+            <span><strong class="text-[#262626]">Đầu ra:</strong> Họ tên và Tiền thuế thu nhập cá nhân phải trả</span>
+          </li>
+        </ul>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+          <div>
+            <label class="block text-sm font-medium text-[#262626] mb-1.5">Họ tên:</label>
+            <input type="text" id="hoTenThue" placeholder="Nhập họ tên" class="form-input w-full px-4 py-3 rounded-xl bg-white text-[#262626]">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-[#262626] mb-1.5">Tổng thu nhập năm (VNĐ):</label>
+            <input type="number" step="any" id="tongThuNhapNam" placeholder="VD: 120000000" class="form-input w-full px-4 py-3 rounded-xl bg-white text-[#262626]">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-[#262626] mb-1.5">Số người phụ thuộc:</label>
+            <input type="number" id="soNguoiPhuThuoc" placeholder="Nhập số người phụ thuộc" class="form-input w-full px-4 py-3 rounded-xl bg-white text-[#262626]">
+          </div>
+        </div>
+
+        <button id="btnTinhTienThue" class="btn-gradient w-full py-3.5 px-6 font-semibold text-sm uppercase tracking-wider flex items-center justify-center gap-2">
+          <span>Tính Tiền Thuế</span>
+          <i class="fa-solid fa-paper-plane"></i>
+        </button>
+
+        <div class="mt-6">
+          <div id="pKetQuaBai3" class="result-box min-h-[54px] rounded-xl p-4 flex items-center text-[#262626] text-base">
+            <span>Kết quả sẽ hiển thị ở đây...</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="bai4" class="tab-pane hidden p-6 sm:p-10">
+        <div class="mb-6">
+          <p class="text-[#f55f8d] font-semibold text-lg mb-1">Bài Tập Nộp #4</p>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-[#262626]">
+            Tính Tiền Cáp
+          </h2>
+        </div>
+
+        <div class="img-box mb-6 border border-slate-200 shadow-sm">
+          <img src="./images/bai4.png" alt="Bài 4: Tính tiền cáp" class="w-full block">
+        </div>
+
+        <ul class="mb-7 space-y-2.5 bg-[#f55f8d]/[0.04] rounded-xl p-4 border border-[#f55f8d]/15 text-sm">
+          <li class="flex items-start gap-3">
+            <i class="fa-solid fa-check icon-badge mt-0.5"></i>
+            <span><strong class="text-[#262626]">Đầu vào:</strong> Loại khách hàng (Nhà dân / Doanh nghiệp), mã khách hàng, số kênh cao cấp, số kết nối (nếu là Doanh nghiệp)</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fa-solid fa-check icon-badge mt-0.5"></i>
+            <span><strong class="text-[#262626]">Xử lý:</strong> Nhà dân = 4.5$ + 20.5$ + 7.5$/kênh; Doanh nghiệp = 15$ + 75$ (10 kết nối đầu, mỗi kết nối thêm +5$) + 50$/kênh</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fa-solid fa-check icon-badge mt-0.5"></i>
+            <span><strong class="text-[#262626]">Đầu ra:</strong> Mã khách hàng và Tổng tiền cáp (USD)</span>
+          </li>
+        </ul>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+          <div>
+            <label class="block text-sm font-medium text-[#262626] mb-1.5">Loại khách hàng:</label>
+            <select id="loaiKhachHang" onchange="xuLyAnHienKetNoi()" class="form-input w-full px-4 py-3 rounded-xl bg-white text-[#262626]">
+              <option value="">Chọn loại khách hàng</option>
+              <option value="nhaDan">Nhà dân</option>
+              <option value="doanhNghiep">Doanh nghiệp</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-[#262626] mb-1.5">Mã khách hàng:</label>
+            <input type="text" id="maKhachHang" placeholder="Nhập mã khách hàng" class="form-input w-full px-4 py-3 rounded-xl bg-white text-[#262626]">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-[#262626] mb-1.5">Số kênh cao cấp:</label>
+            <input type="number" id="soKenhCaoCap" placeholder="Số kênh cao cấp" class="form-input w-full px-4 py-3 rounded-xl bg-white text-[#262626]">
+          </div>
+          <div id="wrapSoKetNoi" class="hidden sm:col-span-3">
+            <label class="block text-sm font-medium text-[#262626] mb-1.5">Số kết nối (Doanh nghiệp):</label>
+            <input type="number" id="soKetNoi" placeholder="Nhập số kết nối" class="form-input w-full px-4 py-3 rounded-xl bg-white text-[#262626]">
+          </div>
+        </div>
+
+        <button id="btnTinhTienCap" class="btn-gradient w-full py-3.5 px-6 font-semibold text-sm uppercase tracking-wider flex items-center justify-center gap-2">
+          <span>Tính Tiền Cáp</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+
+        <div class="mt-6">
+          <div id="pKetQuaBai4" class="result-box min-h-[54px] rounded-xl p-4 flex items-center text-[#262626] text-base">
+            <span>Kết quả sẽ hiển thị ở đây...</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    // Chuyển tab bài tập
+    function openTab(tabId) {
+      document.querySelectorAll('.tab-pane').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.className = "tab-btn nav-tab px-5 py-2.5 rounded-full font-medium text-sm uppercase tracking-wide";
+      });
+      document.getElementById(tabId).classList.remove('hidden');
+      document.getElementById('btn-' + tabId).className = "tab-btn nav-tab btn-gradient px-5 py-2.5 rounded-full font-medium text-sm uppercase tracking-wide shadow-sm";
+    }
+  </script>
+
+  <script src="./js/main.js"></script>
+</body>
+</html>

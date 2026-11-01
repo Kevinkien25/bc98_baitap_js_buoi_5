@@ -1,0 +1,139 @@
+/* Custom styles */
+body {
+  font-family: "Roboto", sans-serif;
+  color: #636363;
+  background-image: url("../images/pic2.png"), url("../images/bg2.png");
+  background-position: top center, bottom center;
+  background-size: 100%, cover;
+  background-repeat: no-repeat;
+}
+
+.btn-gradient {
+  background-image: linear-gradient(
+    to right,
+    #f55f8d 0%,
+    #f8ae56 51%,
+    #f55f8d 100%
+  );
+  background-size: 200%;
+  transition: all 0.5s;
+  color: #ffffff;
+  border-radius: 30px;
+}
+
+.btn-gradient:hover {
+  background-position: right center;
+  box-shadow: 0 10px 25px rgba(245, 95, 141, 0.35);
+}
+
+.btn-gradient:hover i {
+  animation: toLeftFromRight 0.5s forwards;
+  display: inline-block;
+}
+
+.nav-tab {
+  color: #070120;
+  transition: all 0.4s;
+}
+
+.nav-tab:not(.btn-gradient):hover {
+  color: #f55f8d;
+  background-color: rgba(245, 95, 141, 0.08);
+}
+
+.nav-tab:hover span {
+  display: inline-block;
+  animation: upToDown 0.3s forwards;
+}
+
+.icon-badge {
+  width: 28px;
+  height: 28px;
+  line-height: 28px;
+  text-align: center;
+  font-size: 13px;
+  color: #ffffff;
+  border-radius: 50%;
+  background-image: linear-gradient(
+    to right,
+    #f55f8d 0%,
+    #f8ae56 51%,
+    #f55f8d 100%
+  );
+  background-size: 200%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.img-box {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.img-box::before {
+  content: "";
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: -100%;
+  display: block;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.45) 100%
+  );
+  transform: skewX(-25deg);
+  transition: all 0.75s;
+  pointer-events: none;
+}
+
+.img-box:hover::before {
+  left: 125%;
+}
+
+.form-input {
+  transition: all 0.4s;
+  border: 1.5px solid #e2e8f0;
+}
+
+.form-input:hover,
+.form-input:focus {
+  border-color: #f55f8d;
+  box-shadow: 0 0 0 3px rgba(245, 95, 141, 0.12);
+  outline: none;
+}
+
+.result-box {
+  background: rgba(245, 95, 141, 0.08);
+  border: 1px solid rgba(245, 95, 141, 0.25);
+}
+
+@keyframes upToDown {
+  49% {
+    transform: translateY(100%);
+  }
+  50% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  51% {
+    opacity: 1;
+  }
+}
+
+@keyframes toLeftFromRight {
+  49% {
+    transform: translateX(100%);
+  }
+  50% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  51% {
+    opacity: 1;
+  }
+}
